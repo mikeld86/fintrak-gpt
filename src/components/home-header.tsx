@@ -1,7 +1,6 @@
 import { Package, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ExportButtons } from "@/components/export-buttons";
-import { useTheme } from "@/contexts/simple-theme-context";
 
 import blueLogo from "@/assets/Blue.svg";
 
