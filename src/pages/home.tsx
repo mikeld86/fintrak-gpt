@@ -1,19 +1,12 @@
-import { useState } from "react";
-import { Calculator, Coins } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { CashCalculator } from "@/components/cash-calculator";
-import { WeekCalculator } from "@/components/week-calculator";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { formatCurrency } from "@/lib/utils";
-import { useFinancialData } from "@/hooks/use-financial-data";
+import React, { useState } from "react";
 import { HomeHeader } from "@/components/home-header";
 import { ClearDataDialog } from "@/components/clear-data-dialog";
+import { useFinancialData } from "@/hooks/use-financial-data";
+import { formatCurrency } from "@/lib/utils";
 
-export default function Home() {
-  // Temporarily bypass auth for development testing
-  const user = { id: "46429020" };
-  const authLoading = false;
-  const [showClearDialog, setShowClearDialog] = useState(false);
+  
+    const authLoading = false;
+    const [showClearDialog, setShowClearDialog] = useState(false);
 
   const {
     cashOnHand,
@@ -52,7 +45,7 @@ export default function Home() {
     );
   }
 
-  if (!user && !authLoading) {
+  if (!currentUser && !authLoading) {
     return null; // Let App.tsx handle authentication routing
   }
 
