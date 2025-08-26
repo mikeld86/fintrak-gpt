@@ -5,8 +5,6 @@ import { useTheme } from "@/contexts/simple-theme-context";
 
 import blueLogo from "@/assets/Blue.svg";
 
-import blueLogo from "../assets/Blue.svg";
-
 import { formatCurrency } from "@/lib/utils";
 import type { FinancialRow } from "@shared/schema";
 
