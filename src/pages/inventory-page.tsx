@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Package, TrendingUp, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,16 +7,6 @@ import { InventoryTracker } from "@/components/inventory-tracker";
 import { SalesTracker } from "@/components/sales-tracker";
 import { useLocation } from "wouter";
 import type { InventoryBatch } from "@shared/schema";
-import { useTheme } from "@/contexts/simple-theme-context";
-
-import blueLogo from "@/assets/Blue.svg";
-import pinkLogo from "@/assets/Pink.svg";
-import yellowLogo from "@/assets/Yellow.svg";
-
-import blueLogo from "../assets/Blue.svg";
-import pinkLogo from "../assets/Pink.svg";
-import yellowLogo from "../assets/Yellow.svg";
-
 
 export default function InventoryPage() {
   const [, setLocation] = useLocation();
@@ -24,9 +15,6 @@ export default function InventoryPage() {
   const handleBatchSelect = (batch: InventoryBatch) => {
     setSelectedBatch(batch);
   };
-
-  const { theme } = useTheme();
-  const logos = { blue: blueLogo, pink: pinkLogo, yellow: yellowLogo };
 
   return (
     <div className="min-h-screen bg-background">
@@ -46,7 +34,7 @@ export default function InventoryPage() {
 
               <div className="flex items-center gap-2">
                 <img
-                  src={logos[theme]}
+                  src={logo}
                   alt="FINTRAK"
                   className="h-8 w-auto object-contain"
                 />

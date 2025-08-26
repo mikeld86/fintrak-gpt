@@ -1,5 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function NotFound() {
   return (
@@ -16,6 +18,11 @@ export default function NotFound() {
           </p>
         </CardContent>
       </Card>
+      <div className="mt-6">
+        <Link href="/">
+        <Button>Go to Home</Button>
+        </Link>
+      </div>  
     </div>
   );
 }

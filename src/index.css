@@ -71,43 +71,16 @@
 }
 
 /* Theme color variations - iOS color palette */
-body[data-theme="blue"] {
-  --primary: 218 100% 58%; /* #2979ff */
-  --secondary: 171 100% 54%; /* #16ffdb */
-  --primary-foreground: 0 0% 100%;
-}
+body
 
-body[data-theme="pink"] {
-  --primary: 328 100% 50%; /* #ff0086 */
-  --secondary: 260 80% 50%; /* #5c19e5 */
-  --primary-foreground: 0 0% 100%;
-}
+body
 
-body[data-theme="yellow"] {
-  --primary: 60 100% 50%; /* #ffff00 */
-  --secondary: 119 100% 50%; /* #06ff00 */
-  --primary-foreground: 0 0% 0%;
-}
-body.dark[data-theme="blue"],
-.dark body[data-theme="blue"] {
-  --primary: 218 100% 58%;
-  --secondary: 171 100% 54%;
-  --primary-foreground: 222.2 84% 4.9%;
-}
+body
+body.dark
 
-body.dark[data-theme="pink"],
-.dark body[data-theme="pink"] {
-  --primary: 328 100% 50%;
-  --secondary: 260 80% 50%;
-  --primary-foreground: 222.2 84% 4.9%;
-}
+body.dark
 
-body.dark[data-theme="yellow"],
-.dark body[data-theme="yellow"] {
-  --primary: 60 100% 50%;
-  --secondary: 119 100% 50%;
-  --primary-foreground: 222.2 84% 4.9%;
-}
+body.dark
 
 /* Enhanced contrast for mobile light mode */
 @media (max-width: 768px) {
