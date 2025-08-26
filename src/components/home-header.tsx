@@ -75,7 +75,7 @@ export function HomeHeader({
               <Package className="h-4 w-4 mr-1" />
               Inventory
             </Button>
-            <ThemeSelector />
+            
             <ExportButtons data={exportData} />
             <Button variant="destructive" size="sm" onClick={onClearAll}>
               <Trash2 className="h-4 w-4 mr-2" />
@@ -116,7 +116,7 @@ export function HomeHeader({
             >
               Sign Out
             </Button>
-            <ThemeSelector />
+            
           </div>
         </div>
 
