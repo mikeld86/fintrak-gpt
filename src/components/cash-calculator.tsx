@@ -78,13 +78,13 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
                 <span className="text-sm font-medium text-card-foreground min-w-0 flex-1">
                   {note.label}
                 </span>
-                <div className="flex items-center space-x-2 sm:space-x-3 ml-2">
+                <div className="grid grid-cols-[auto_auto] items-center gap-2 sm:gap-3">
                   <Input
                     type="number"
                     inputMode="numeric"
                     value={quantity || ""}
                     onChange={(e) => updateDenomination(note.key, parseInt(e.target.value) || 0)}
-                    className="w-16 text-center text-base bg-input text-foreground border-border justify-self-center"
+                    className="w-16 text-center justify-self-center text-base bg-input text-foreground border-border"
                     min="0"
                     placeholder="0"
                   />
@@ -95,7 +95,7 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
               </div>
             );
           })}
-          <div className="border-t border-border pt-3"><div className="grid grid-cols-[1fr_auto_auto] items-center"><span className="text-sm font-medium text-muted-foreground">Notes Total:</span><span></span><span className="text-sm font-semibold text-foreground justify-self-end">{formatCurrency(notesTotal)}</span></div></div>
+          <div className="border-t border-border pt-3"><div className="grid grid-cols-[1fr_auto_auto] items-center p-3"><span className="text-sm font-medium text-muted-foreground">Notes Total:</span><span></span><span className="text-sm font-semibold text-foreground justify-self-end"> w-14 sm:w-16 text-right {formatCurrency(notesTotal)}</span></div></div>
         </div>
       </div>
 
@@ -114,13 +114,13 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
                 <span className="text-sm font-medium text-card-foreground min-w-0 flex-1">
                   {coin.label}
                 </span>
-                <div className="flex items-center space-x-2 sm:space-x-3 ml-2">
+                <div className="grid grid-cols-[auto_auto] items-center gap-2 sm:gap-3">
                   <Input
                     type="number"
                     inputMode="numeric"
                     value={quantity || ""}
                     onChange={(e) => updateDenomination(coin.key, parseInt(e.target.value) || 0)}
-                    className="w-16 text-center text-base bg-input text-foreground border-border justify-self-center"
+                    className="w-16 text-center justify-self-center text-base bg-input text-foreground border-border"
                     min="0"
                     placeholder="0"
                   />
@@ -131,7 +131,7 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
               </div>
             );
           })}
-          <div className="border-t border-border pt-3"><div className="grid grid-cols-[1fr_auto_auto] items-center"><span className="text-sm font-medium text-muted-foreground">Coins Total:</span><span></span><span className="text-sm font-semibold text-foreground justify-self-end">{formatCurrency(coinsTotal)}</span></div></div>
+          <div className="border-t border-border pt-3"><div className="grid grid-cols-[1fr_auto_auto] items-center p-3"><span className="text-sm font-medium text-muted-foreground">Coins Total:</span><span></span><span className="text-sm font-semibold text-foreground justify-self-end"> w-14 sm:w-16 text-right {formatCurrency(coinsTotal)}</span></div></div>
         </div>
       </div>
 
