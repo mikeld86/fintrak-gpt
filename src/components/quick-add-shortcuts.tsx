@@ -38,7 +38,7 @@ export function QuickAddShortcuts({ onAddIncome, onAddExpense, weekNumber }: Qui
       {/* Collapsible Header */}
       <Button
         onClick={() => setIsExpanded(!isExpanded)}
-        variant="default"
+        variant="ghost"
         className="w-full flex items-center justify-between p-3 touch-manipulation"
       >
         <h3 className="text-sm font-medium">
@@ -61,7 +61,7 @@ export function QuickAddShortcuts({ onAddIncome, onAddExpense, weekNumber }: Qui
               {INCOME_SHORTCUTS.map((shortcut, index) => (
                 <Button
                   key={`${shortcut.label}-${shortcut.amount}-${index}`}
-                  variant="income"
+                  variant="outline"
                   size="sm"
                   onClick={() => onAddIncome(shortcut.label, shortcut.amount)}
                   className="h-7 px-2"
@@ -82,7 +82,7 @@ export function QuickAddShortcuts({ onAddIncome, onAddExpense, weekNumber }: Qui
               {EXPENSE_SHORTCUTS.map((shortcut, index) => (
                 <Button
                   key={`${shortcut.label}-${shortcut.amount}-${index}`}
-                  variant="expense"
+                  variant="outline"
                   size="sm"
                   onClick={() => onAddExpense(shortcut.label, shortcut.amount)}
                   className="h-7 px-2"

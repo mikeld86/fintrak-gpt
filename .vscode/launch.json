@@ -6,6 +6,12 @@
             "request": "launch",
             "preLaunchTask": "docker-run: debug",
             "platform": "node"
+        },
+        {
+            "type": "chrome",
+            "name": "http://192.168.1.38:3000",
+            "request": "launch",
+            "url": "http://192.168.1.38:3000"
         }
     ]
 }

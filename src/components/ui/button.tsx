@@ -1,15 +1,8 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
 
-/**
- * Button: pill shape + left->right blue->cyan gradient that stays consistent at all sizes.
- * NOTE: The original request used HSL lightness 100% which renders as white.
- * To match the provided screenshot, we use ~56%/55% lightness so the gradient is visible.
- * If you absolutely want 100% lightness, change 56%/55% to 100% below.
- */
 const buttonVariants = cva(
   `inline-flex items-center justify-center gap-2 whitespace-nowrap
    rounded-full text-sm font-medium leading-none
@@ -28,11 +21,11 @@ const buttonVariants = cva(
         default: "",
         destructive: "",
         secondary: "",
-        outline: "border border-transparent",
-        ghost: "", // keep gradient for ghost too
+        outline: "bg-none bg-transparent border border-primary",
+        ghost: "",
         link: "bg-none underline underline-offset-4",
-        income: "",
-        expense: "",
+        income: "bg-none bg-transparent border border-primary",
+        expense: "bg-none bg-transparent border border-primary",
       },
       size: {
         default: "h-10 px-5",
@@ -41,10 +34,7 @@ const buttonVariants = cva(
         icon: "h-10 w-10 p-0",
       },
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
+    defaultVariants: { variant: "default", size: "default" },
   }
 )
 

@@ -95,16 +95,7 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
               </div>
             );
           })}
-          <div className="border-t border-border pt-3">
-            <div className="flex justify-between items-center">
-              <span className="text-sm font-medium text-muted-foreground">
-                Notes Total:
-              </span>
-              <span className="text-sm font-semibold text-foreground">
-                {formatCurrency(notesTotal)}
-              </span>
-            </div>
-          </div>
+          <div className="border-t border-border pt-3"><div className="grid grid-cols-3 items-center"><span className="text-sm font-medium text-muted-foreground col-start-1">Notes Total:</span><span className="col-start-3 justify-self-end text-sm font-semibold text-foreground">{formatCurrency(notesTotal)}</span></div></div>
         </div>
       </div>
 
