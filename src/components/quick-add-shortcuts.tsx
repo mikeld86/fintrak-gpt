@@ -38,8 +38,8 @@ export function QuickAddShortcuts({ onAddIncome, onAddExpense, weekNumber }: Qui
       {/* Collapsible Header */}
       <Button
         onClick={() => setIsExpanded(!isExpanded)}
-        variant="ghost"
-        className="w-full flex items-center justify-between p-3 touch-manipulation"
+        variant="outline"
+        className="w-full flex items-center justify-between p-3 touch-manipulation bg-transparent text-foreground border-primary"
       >
         <h3 className="text-sm font-medium">
           Quick Add - Week {weekNumber}

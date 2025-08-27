@@ -155,7 +155,7 @@ export default function Home() {
             <Button
               onClick={addAdditionalWeek}
               variant="outline"
-              className="w-full max-w-md"
+              className="w-full max-w-md border-2 border-dashed border-secondary text-secondary"
             >
               + Add Week {3 + additionalWeeks.length}
             </Button>

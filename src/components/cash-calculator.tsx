@@ -74,7 +74,7 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
             const subtotal = quantity * note.value;
             
             return (
-              <div key={note.key} className="flex items-center justify-between p-3 bg-card rounded-lg border border-border">
+              <div key={note.key} className="grid grid-cols-[1fr_auto_auto] items-center p-3 bg-card rounded-lg border border-border">
                 <span className="text-sm font-medium text-card-foreground min-w-0 flex-1">
                   {note.label}
                 </span>
@@ -84,18 +84,18 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
                     inputMode="numeric"
                     value={quantity || ""}
                     onChange={(e) => updateDenomination(note.key, parseInt(e.target.value) || 0)}
-                    className="w-16 text-right text-base bg-input text-foreground border-border"
+                    className="w-16 text-center text-base bg-input text-foreground border-border justify-self-center"
                     min="0"
                     placeholder="0"
                   />
-                  <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right">
+                  <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right justify-self-end">
                     {formatCurrency(subtotal)}
                   </span>
                 </div>
               </div>
             );
           })}
-          <div className="border-t border-border pt-3"><div className="grid grid-cols-3 items-center"><span className="text-sm font-medium text-muted-foreground col-start-1">Notes Total:</span><span className="col-start-3 justify-self-end text-sm font-semibold text-foreground">{formatCurrency(notesTotal)}</span></div></div>
+          <div className="border-t border-border pt-3"><div className="grid grid-cols-[1fr_auto_auto] items-center"><span className="text-sm font-medium text-muted-foreground">Notes Total:</span><span></span><span className="text-sm font-semibold text-foreground justify-self-end">{formatCurrency(notesTotal)}</span></div></div>
         </div>
       </div>
 
@@ -110,7 +110,7 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
             const subtotal = quantity * coin.value;
             
             return (
-              <div key={coin.key} className="flex items-center justify-between p-3 bg-card rounded-lg border border-border">
+              <div key={coin.key} className="grid grid-cols-[1fr_auto_auto] items-center p-3 bg-card rounded-lg border border-border">
                 <span className="text-sm font-medium text-card-foreground min-w-0 flex-1">
                   {coin.label}
                 </span>
@@ -120,27 +120,18 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
                     inputMode="numeric"
                     value={quantity || ""}
                     onChange={(e) => updateDenomination(coin.key, parseInt(e.target.value) || 0)}
-                    className="w-16 text-right text-base bg-input text-foreground border-border"
+                    className="w-16 text-center text-base bg-input text-foreground border-border justify-self-center"
                     min="0"
                     placeholder="0"
                   />
-                  <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right">
+                  <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right justify-self-end">
                     {formatCurrency(subtotal)}
                   </span>
                 </div>
               </div>
             );
           })}
-          <div className="border-t border-border pt-3">
-            <div className="flex justify-between items-center">
-              <span className="text-sm font-medium text-muted-foreground">
-                Coins Total:
-              </span>
-              <span className="text-sm font-semibold text-foreground">
-                {formatCurrency(coinsTotal)}
-              </span>
-            </div>
-          </div>
+          <div className="border-t border-border pt-3"><div className="grid grid-cols-[1fr_auto_auto] items-center"><span className="text-sm font-medium text-muted-foreground">Coins Total:</span><span></span><span className="text-sm font-semibold text-foreground justify-self-end">{formatCurrency(coinsTotal)}</span></div></div>
         </div>
       </div>
 
