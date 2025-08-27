@@ -73,29 +73,43 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
             const quantity = localDenominations[note.key];
             const subtotal = quantity * note.value;
             
-            return (
-              <div key={note.key} className="grid grid-cols-[1fr_auto_auto] items-center p-3 bg-card rounded-lg border border-border">
-                <span className="text-sm font-medium text-card-foreground min-w-0 flex-1">
-                  {note.label}
-                </span>
-                <div className="grid grid-cols-[auto_auto] items-center gap-2 sm:gap-3">
-                  <Input
-                    type="number"
-                    inputMode="numeric"
-                    value={quantity || ""}
-                    onChange={(e) => updateDenomination(note.key, parseInt(e.target.value) || 0)}
-                    className="w-16 text-center justify-self-center text-base bg-input text-foreground border-border"
-                    min="0"
-                    placeholder="0"
-                  />
-                  <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right justify-self-end">
-                    {formatCurrency(subtotal)}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-          <div className="border-t border-border pt-3"><div className="grid grid-cols-[1fr_auto_auto] items-center p-3"><span className="text-sm font-medium text-muted-foreground">Notes Total:</span><span></span><span className="text-sm font-semibold text-foreground justify-self-end"> w-14 sm:w-16 text-right {formatCurrency(notesTotal)}</span></div></div>
+            
+return (
+  <div
+    key={note.key}
+    className="grid grid-cols-[1fr_auto_auto] items-center p-3 bg-card rounded-lg border border-border"
+  >
+    <span className="text-sm font-medium text-card-foreground min-w-0">
+      {note.label}
+    </span>
+    <div className="justify-self-center">
+      <Input
+        type="number"
+        inputMode="numeric"
+        value={quantity || ""}
+        onChange={(e) => updateDenomination(note.key, parseInt(e.target.value) || 0)}
+        className="w-16 text-center text-base bg-input text-foreground border-border"
+        min="0"
+        placeholder="0"
+      />
+    </div>
+    <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right justify-self-end">
+      {formatCurrency(subtotal)}
+    </span>
+  </div>
+);
+}
+)}
+          
+<div className="border-t border-border pt-3">
+  <div className="grid grid-cols-[1fr_auto_auto] items-center p-3">
+    <span className="text-sm font-medium text-muted-foreground">Notes Total:</span>
+    <span></span>
+    <span className="text-sm font-semibold text-foreground w-14 sm:w-16 text-right justify-self-end">
+      {formatCurrency(notesTotal)}
+    </span>
+  </div>
+</div>
         </div>
       </div>
 
@@ -105,33 +119,45 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
           Australian Coins
         </h3>
         <div className="space-y-3">
-          {coinValues.map(coin => {
-            const quantity = localDenominations[coin.key];
-            const subtotal = quantity * coin.value;
-            
-            return (
-              <div key={coin.key} className="grid grid-cols-[1fr_auto_auto] items-center p-3 bg-card rounded-lg border border-border">
-                <span className="text-sm font-medium text-card-foreground min-w-0 flex-1">
-                  {coin.label}
-                </span>
-                <div className="grid grid-cols-[auto_auto] items-center gap-2 sm:gap-3">
-                  <Input
-                    type="number"
-                    inputMode="numeric"
-                    value={quantity || ""}
-                    onChange={(e) => updateDenomination(coin.key, parseInt(e.target.value) || 0)}
-                    className="w-16 text-center justify-self-center text-base bg-input text-foreground border-border"
-                    min="0"
-                    placeholder="0"
-                  />
-                  <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right justify-self-end">
-                    {formatCurrency(subtotal)}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-          <div className="border-t border-border pt-3"><div className="grid grid-cols-[1fr_auto_auto] items-center p-3"><span className="text-sm font-medium text-muted-foreground">Coins Total:</span><span></span><span className="text-sm font-semibold text-foreground justify-self-end"> w-14 sm:w-16 text-right {formatCurrency(coinsTotal)}</span></div></div>
+          {
+coinValues.map((coin) => {
+  const quantity = localDenominations[coin.key] || 0;
+  const subtotal = quantity * coin.value;
+  return (
+    <div
+      key={coin.key}
+      className="grid grid-cols-[1fr_auto_auto] items-center p-3 bg-card rounded-lg border border-border"
+    >
+      <span className="text-sm font-medium text-card-foreground min-w-0">
+        {coin.label}
+      </span>
+      <div className="justify-self-center">
+        <Input
+          type="number"
+          inputMode="numeric"
+          value={quantity || ""}
+          onChange={(e) => updateDenomination(coin.key, parseInt(e.target.value) || 0)}
+          className="w-16 text-center text-base bg-input text-foreground border-border"
+          min="0"
+          placeholder="0"
+        />
+      </div>
+      <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right justify-self-end">
+        {formatCurrency(subtotal)}
+      </span>
+    </div>
+  );
+})
+          
+<div className="border-t border-border pt-3">
+  <div className="grid grid-cols-[1fr_auto_auto] items-center p-3">
+    <span className="text-sm font-medium text-muted-foreground">Coins Total:</span>
+    <span></span>
+    <span className="text-sm font-semibold text-foreground w-14 sm:w-16 text-right justify-self-end">
+      {formatCurrency(coinsTotal)}
+    </span>
+  </div>
+</div>
         </div>
       </div>
 
