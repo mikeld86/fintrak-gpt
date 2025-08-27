@@ -18,7 +18,7 @@ type CashDenominations = {
 
 type CashCalculatorProps = {
   denominations: CashDenominations;
-  onUpdate: (denominations: CashDenominations, totalCash: number) => void;
+  onUpdate: (denoms: CashDenominations, total: number) => void;
 };
 
 const noteValues = [
@@ -48,128 +48,107 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
   const updateDenomination = (key: keyof CashDenominations, quantity: number) => {
     const updated = { ...localDenominations, [key]: Math.max(0, quantity) };
     setLocalDenominations(updated);
-    
-    // Calculate totals
-    const notesTotal = noteValues.reduce((sum, note) => sum + (updated[note.key] * note.value), 0);
-    const coinsTotal = coinValues.reduce((sum, coin) => sum + (updated[coin.key] * coin.value), 0);
-    const totalCash = notesTotal + coinsTotal;
-    
-    onUpdate(updated, totalCash);
+
+    const notesTotal = noteValues.reduce((sum, note) => sum + updated[note.key] * note.value, 0);
+    const coinsTotal = coinValues.reduce((sum, coin) => sum + updated[coin.key] * coin.value, 0);
+    onUpdate(updated, notesTotal + coinsTotal);
   };
 
-  const notesTotal = noteValues.reduce((sum, note) => sum + (localDenominations[note.key] * note.value), 0);
-  const coinsTotal = coinValues.reduce((sum, coin) => sum + (localDenominations[coin.key] * coin.value), 0);
+  const notesTotal = noteValues.reduce((sum, note) => sum + localDenominations[note.key] * note.value, 0);
+  const coinsTotal = coinValues.reduce((sum, coin) => sum + localDenominations[coin.key] * coin.value, 0);
   const totalCash = notesTotal + coinsTotal;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
       {/* Notes */}
       <div>
-        <h3 className="text-sm font-medium text-muted-foreground mb-3">
-          Australian Notes
-        </h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-3">Australian Notes</h3>
         <div className="space-y-3">
-          {noteValues.map(note => {
-            const quantity = localDenominations[note.key];
+          {noteValues.map((note) => {
+            const quantity = localDenominations[note.key] || 0;
             const subtotal = quantity * note.value;
-            
-            
-return (
-  <div
-    key={note.key}
-    className="grid grid-cols-[1fr_auto_auto] items-center p-3 bg-card rounded-lg border border-border"
-  >
-    <span className="text-sm font-medium text-card-foreground min-w-0">
-      {note.label}
-    </span>
-    <div className="justify-self-center">
-      <Input
-        type="number"
-        inputMode="numeric"
-        value={quantity || ""}
-        onChange={(e) => updateDenomination(note.key, parseInt(e.target.value) || 0)}
-        className="w-16 text-center text-base bg-input text-foreground border-border"
-        min="0"
-        placeholder="0"
-      />
-    </div>
-    <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right justify-self-end">
-      {formatCurrency(subtotal)}
-    </span>
-  </div>
-);
-}
-)}
-          
-<div className="border-t border-border pt-3">
-  <div className="grid grid-cols-[1fr_auto_auto] items-center p-3">
-    <span className="text-sm font-medium text-muted-foreground">Notes Total:</span>
-    <span></span>
-    <span className="text-sm font-semibold text-foreground w-14 sm:w-16 text-right justify-self-end">
-      {formatCurrency(notesTotal)}
-    </span>
-  </div>
-</div>
+            return (
+              <div
+                key={note.key}
+                className="grid grid-cols-[1fr_auto_auto] items-center p-3 bg-card rounded-lg border border-border"
+              >
+                <span className="text-sm font-medium text-card-foreground min-w-0">{note.label}</span>
+                <div className="justify-self-center">
+                  <Input
+                    type="number"
+                    inputMode="numeric"
+                    value={quantity || ""}
+                    onChange={(e) => updateDenomination(note.key, parseInt(e.target.value) || 0)}
+                    className="w-16 text-center text-base bg-input text-foreground border-border"
+                    min="0"
+                    placeholder="0"
+                  />
+                </div>
+                <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right justify-self-end">
+                  {formatCurrency(subtotal)}
+                </span>
+              </div>
+            );
+          })}
+          <div className="border-t border-border pt-3">
+            <div className="grid grid-cols-[1fr_auto_auto] items-center p-3">
+              <span className="text-sm font-medium text-muted-foreground">Notes Total:</span>
+              <span></span>
+              <span className="text-sm font-semibold text-foreground w-14 sm:w-16 text-right justify-self-end">
+                {formatCurrency(notesTotal)}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Coins */}
       <div>
-        <h3 className="text-sm font-medium text-muted-foreground mb-3">
-          Australian Coins
-        </h3>
+        <h3 className="text-sm font-medium text-muted-foreground mb-3">Australian Coins</h3>
         <div className="space-y-3">
-          {
-coinValues.map((coin) => {
-  const quantity = localDenominations[coin.key] || 0;
-  const subtotal = quantity * coin.value;
-  return (
-    <div
-      key={coin.key}
-      className="grid grid-cols-[1fr_auto_auto] items-center p-3 bg-card rounded-lg border border-border"
-    >
-      <span className="text-sm font-medium text-card-foreground min-w-0">
-        {coin.label}
-      </span>
-      <div className="justify-self-center">
-        <Input
-          type="number"
-          inputMode="numeric"
-          value={quantity || ""}
-          onChange={(e) => updateDenomination(coin.key, parseInt(e.target.value) || 0)}
-          className="w-16 text-center text-base bg-input text-foreground border-border"
-          min="0"
-          placeholder="0"
-        />
-      </div>
-      <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right justify-self-end">
-        {formatCurrency(subtotal)}
-      </span>
-    </div>
-  );
-})
-          
-<div className="border-t border-border pt-3">
-  <div className="grid grid-cols-[1fr_auto_auto] items-center p-3">
-    <span className="text-sm font-medium text-muted-foreground">Coins Total:</span>
-    <span></span>
-    <span className="text-sm font-semibold text-foreground w-14 sm:w-16 text-right justify-self-end">
-      {formatCurrency(coinsTotal)}
-    </span>
-  </div>
-</div>
+          {coinValues.map((coin) => {
+            const quantity = localDenominations[coin.key] || 0;
+            const subtotal = quantity * coin.value;
+            return (
+              <div
+                key={coin.key}
+                className="grid grid-cols-[1fr_auto_auto] items-center p-3 bg-card rounded-lg border border-border"
+              >
+                <span className="text-sm font-medium text-card-foreground min-w-0">{coin.label}</span>
+                <div className="justify-self-center">
+                  <Input
+                    type="number"
+                    inputMode="numeric"
+                    value={quantity || ""}
+                    onChange={(e) => updateDenomination(coin.key, parseInt(e.target.value) || 0)}
+                    className="w-16 text-center text-base bg-input text-foreground border-border"
+                    min="0"
+                    placeholder="0"
+                  />
+                </div>
+                <span className="text-sm text-muted-foreground w-14 sm:w-16 text-right justify-self-end">
+                  {formatCurrency(subtotal)}
+                </span>
+              </div>
+            );
+          })}
+          <div className="border-t border-border pt-3">
+            <div className="grid grid-cols-[1fr_auto_auto] items-center p-3">
+              <span className="text-sm font-medium text-muted-foreground">Coins Total:</span>
+              <span></span>
+              <span className="text-sm font-semibold text-foreground w-14 sm:w-16 text-right justify-self-end">
+                {formatCurrency(coinsTotal)}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Overall Total */}
       <div className="md:col-span-2 border-t-2 border-primary pt-4">
         <div className="flex justify-between items-center">
-          <span className="text-lg font-medium text-muted-foreground">
-            Total Cash on Hand:
-          </span>
-          <span className="text-2xl font-bold text-primary">
-            {formatCurrency(totalCash)}
-          </span>
+          <span className="text-lg font-medium text-muted-foreground">Total Cash on Hand:</span>
+          <span className="text-2xl font-bold text-primary">{formatCurrency(totalCash)}</span>
         </div>
       </div>
     </div>
