@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 222.86 84% 4.9%;
+  --foreground: 210 40% 85%;
+  --card: 225 59% 10.6%;
+  --card-foreground: 210 40% 98%;
+  --popover: 225 59% 10.6%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 225 59% 10.6%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 225 59% 10.6%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 225 59% 10.6%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --input: 222.86 84% 4.9%;
+  /* Match border and ring colors to the current theme */
+  --ring: var(--primary);
+  --border: var(--primary);
+  --card-border: var(--primary);
+  --radius: 0.75rem;
+}
+
+.dark {
+  --foreground: 210 40% 98%;
+  --card: 225 59% 10.6%;
+  --popover: 225 59% 10.6%;
+  --input: 222.86 84% 4.9%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 222.86 84% 4.9%;
+  /* Dark mode specific charts */
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 30 80% 55%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground: 210 40% 98%;
+    --card: 225 59% 10.6%;
+    --popover: 225 59% 10.6%;
+    --input: 222.86 84% 4.9%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222.86 84% 4.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+/* Override input styling for dark theme */
+@layer components {
+  .dark-input {
+    @apply bg-input text-foreground border-primary border-opacity-70;
+    border-width: 0.5px;
+  }
+
+  .text-muted {
+    @apply text-muted-foreground;
+  }
+}
+
+/* Theme color variations - iOS color palette */
+body[data-theme="blue"] {
+  --primary: 218 100% 58%; /* #2979ff */
+  --secondary: 171 100% 54%; /* #16ffdb */
+  --primary-foreground: 0 0% 100%;
+}
+
+body[data-theme="pink"] {
+  --primary: 328 100% 50%; /* #ff0086 */
+  --secondary: 260 80% 50%; /* #5c19e5 */
+  --primary-foreground: 0 0% 100%;
+}
+
+body[data-theme="yellow"] {
+  --primary: 60 100% 50%; /* #ffff00 */
+  --secondary: 119 100% 50%; /* #06ff00 */
+  --primary-foreground: 0 0% 0%;
+}
+body.dark[data-theme="blue"],
+.dark body[data-theme="blue"] {
+  --primary: 218 100% 58%;
+  --secondary: 171 100% 54%;
+  --primary-foreground: 222.2 84% 4.9%;
+}
+
+body.dark[data-theme="pink"],
+.dark body[data-theme="pink"] {
+  --primary: 328 100% 50%;
+  --secondary: 260 80% 50%;
+  --primary-foreground: 222.2 84% 4.9%;
+}
+
+body.dark[data-theme="yellow"],
+.dark body[data-theme="yellow"] {
+  --primary: 60 100% 50%;
+  --secondary: 119 100% 50%;
+  --primary-foreground: 222.2 84% 4.9%;
+}
+
+/* Enhanced contrast for mobile light mode */
+@media (max-width: 768px) {
+  :not(.dark) .text-gray-500 {
+    color: hsl(210, 25%, 40%);
+  }
+
+  :not(.dark) .text-gray-600 {
+    color: hsl(210, 25%, 30%);
+  }
+
+  :not(.dark) .text-gray-700 {
+    color: hsl(210, 25%, 20%);
+  }
+
+  :not(.dark) .border-gray-200 {
+    border-color: hsl(210, 25%, 75%);
+  }
+
+  :not(.dark) .border-gray-300 {
+    border-color: hsl(210, 25%, 65%);
+  }
+
+  :not(.dark) .bg-gray-50 {
+    background-color: hsl(210, 25%, 96%);
+  }
+
+  :not(.dark) .bg-gray-100 {
+    background-color: hsl(210, 25%, 90%);
+  }
+}
+
+@layer base {
+  /* Space Grotesk font applied globally */
+  body {
+    @apply font-sans antialiased;
+    font-family: "Space Grotesk", sans-serif;
+    color: hsl(var(--foreground));
+    background: hsl(var(--background));
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    input, select, button {
+      font-size: 16px; /* Prevents zoom on iOS */
+      min-height: 44px; /* iOS recommended touch target size */
+    }
+    
+  }
+
+  /* iOS specific optimizations */
+  @supports (-webkit-touch-callout: none) {
+    input[type="number"] {
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+    }
+    
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+/* Currency input styling */
+.currency-input {
+  text-align: right;
+}
