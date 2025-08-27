@@ -38,16 +38,16 @@ export function QuickAddShortcuts({ onAddIncome, onAddExpense, weekNumber }: Qui
       {/* Collapsible Header */}
       <Button
         onClick={() => setIsExpanded(!isExpanded)}
-        variant="ghost"
+        variant="default"
         className="w-full flex items-center justify-between p-3 touch-manipulation"
       >
-        <h3 className="text-sm font-medium text-primary dark:text-primary">
+        <h3 className="text-sm font-medium">
           Quick Add - Week {weekNumber}
         </h3>
         {isExpanded ? (
-          <ChevronUp className="h-4 w-4 text-primary" />
+          <ChevronUp className="h-4 w-4" />
         ) : (
-          <ChevronDown className="h-4 w-4 text-primary" />
+          <ChevronDown className="h-4 w-4" />
         )}
       </Button>
 
