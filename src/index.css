@@ -14,7 +14,7 @@
   --secondary: 225 59% 10.6%;
   --secondary-foreground: 210 40% 98%;
   --muted: 225 59% 10.6%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted-foreground: 215 9% 90%;
   --accent: 225 59% 10.6%;
   --accent-foreground: 210 40% 98%;
   --destructive: 0 62.8% 30.6%;
@@ -24,7 +24,8 @@
   --ring: var(--primary);
   --border: var(--primary);
   --card-border: var(--primary);
-  --radius: 0.75rem;
+  --radius: 1.25rem;
+  ;
 }
 
 .dark {

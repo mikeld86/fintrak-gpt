@@ -91,7 +91,7 @@ export default function Home() {
           <div className="lg:col-span-2">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="cash-calculator" className="border border-border rounded-lg bg-card">
-                <AccordionTrigger className="bg-transparent text-base font-medium px-6 py-4 hover:no-underline [&[data-state=open]>svg]:rotate-180">
+                <AccordionTrigger className="bg-transparent text-2xl font-medium px-6 py-4 hover:no-underline [&[data-state=open]>svg]:rotate-180">
                   <div className="flex items-center justify-between w-full mr-4">
                     <div className="flex items-center">
                       <Coins className="mr-2 h-5 w-5 text-primary flex-shrink-0" />

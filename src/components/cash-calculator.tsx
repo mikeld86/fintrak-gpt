@@ -57,13 +57,13 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
 
   // Row layout: [1fr | auto | 1fr] so the middle column is *exactly center* of the row.
   const rowClass = "grid grid-cols-[1fr_auto_1fr] items-center p-3 bg-card rounded-lg border border-border";
-  const totalClass = "text-sm text-muted-foreground w-14 sm:w-16 text-right justify-self-end";
+  const totalClass = "text-sm text-foreground w-14 sm:w-16 text-right justify-self-end";
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
       {/* Notes */}
       <div>
-        <h3 className="text-sm font-medium text-muted-foreground mb-3">Australian Notes</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Australian Notes</h3>
         <div className="space-y-3">
           {noteValues.map((note) => {
             const qty = localDenominations[note.key] || 0;
@@ -98,7 +98,7 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
 
       {/* Coins */}
       <div>
-        <h3 className="text-sm font-medium text-muted-foreground mb-3">Australian Coins</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">Australian Coins</h3>
         <div className="space-y-3">
           {coinValues.map((coin) => {
             const qty = localDenominations[coin.key] || 0;
@@ -123,7 +123,7 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
           })}
           <div className="border-t border-border pt-3">
             <div className={rowClass + " p-3 !bg-transparent !border-0"}>
-              <span className="text-sm font-medium text-muted-foreground">Coins Total:</span>
+              <span className="text-sm font-medium text-foreground">Coins Total:</span>
               <span className="justify-self-center" />
               <span className={totalClass + " text-foreground"}>{formatCurrency(coinsTotal)}</span>
             </div>
@@ -132,9 +132,9 @@ export function CashCalculator({ denominations, onUpdate }: CashCalculatorProps)
       </div>
 
       {/* Overall Total */}
-      <div className="md:col-span-2 border-t-2 border-primary pt-4">
+      <div className="md:col-spoan-2 border-t-2 border-primary pt-4">
         <div className="flex justify-between items-center">
-          <span className="text-lg font-medium text-muted-foreground">Total Cash on Hand:</span>
+          <span className="text-sm font-medium text-foreground">Total Cash on Hand:</span>
           <span className="text-2xl font-bold text-primary">{formatCurrency(totalCash)}</span>
         </div>
       </div>
